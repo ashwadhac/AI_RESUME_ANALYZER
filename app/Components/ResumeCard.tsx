@@ -1,30 +1,36 @@
 import { Link } from "react-router";
 
 type Resume = {
-    id: number;
+    id: string;
+    companyName: string;
     jobTitle: string;
+    feedback: {
+        overallScore: number;
+    };
 };
 
 const ResumeCard = ({ resume }: { resume: Resume }) => {
-    const { id, jobTitle } = resume;
-
     return (
         <Link
-            to={`/resume/${id}`}
-            className="bg-white shadow-md rounded-xl p-6 hover:shadow-xl transition duration-300"
+            to={`/resume/${resume.id}`}
+            className="block bg-white rounded-2xl px-6 py-6 shadow-sm hover:shadow-md transition"
         >
-            <div className="flex flex-col gap-2">
-                <h2 className="text-black font-bold text-xl">
-                    Resume #{id}
-                </h2>
+            <div className="flex flex-col min-h-[320px]">
+                <div>
+                    <h2 className="text-3xl font-bold text-gray-700">
+                        {resume.companyName}
+                    </h2>
 
-                <h3 className="text-gray-500 text-lg">
-                    {jobTitle}
-                </h3>
-            </div>
+                    <p className="text-gray-500 text-lg mt-2">
+                        {resume.jobTitle}
+                    </p>
+                </div>
 
-            <div className="mt-4 text-sm text-green-600 font-semibold">
-                View AI Feedback →
+                <div className="flex justify-end mt-auto">
+                    <div className="w-20 h-20 rounded-full border-2 border-purple-500 flex items-center justify-center text-lg font-bold text-gray-700">
+                        {resume.feedback.overallScore}/100
+                    </div>
+                </div>
             </div>
         </Link>
     );
