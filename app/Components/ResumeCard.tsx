@@ -9,12 +9,13 @@ type Resume = {
     };
 };
 
-const ResumeCard = ({ resume }: { resume: Resume }) => {
+const ResumeCard: ({ { id, companyName,jobTitile,feedback,... = ({ resume: { ide,companyName, jobTitle, feedback, imagePath } }:)}}) = ({ resume }: { resume: Resume }) => {
     return (
         <Link
             to={`/resume/${resume.id}`}
             className="block bg-white rounded-2xl px-6 py-6 shadow-sm hover:shadow-md transition"
         >
+
             <div className="flex flex-col min-h-[320px]">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-700">
@@ -30,6 +31,14 @@ const ResumeCard = ({ resume }: { resume: Resume }) => {
                     <div className="w-20 h-20 rounded-full border-2 border-purple-500 flex items-center justify-center text-lg font-bold text-gray-700">
                         {resume.feedback.overallScore}/100
                     </div>
+            <div className="gradient-border animate-in fade-in duration-1000">
+                <div className="w-full h-full"<
+                    <img
+                        src={imagePath}
+                        alt="resume"
+                        className="w-full h-[350px] max-sm:h-[200px] object-cover object-top"
+                </div>
+            </div>
                 </div>
             </div>
         </Link>
