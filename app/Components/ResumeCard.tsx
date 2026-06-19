@@ -4,42 +4,42 @@ type Resume = {
     id: string;
     companyName: string;
     jobTitle: string;
+    imagePath: string;
     feedback: {
         overallScore: number;
     };
 };
 
-const ResumeCard: ({ { id, companyName,jobTitile,feedback,... = ({ resume: { ide,companyName, jobTitle, feedback, imagePath } }:)}}) = ({ resume }: { resume: Resume }) => {
+const ResumeCard = ({ resume }: { resume: Resume }) => {
     return (
         <Link
             to={`/resume/${resume.id}`}
-            className="block bg-white rounded-2xl px-6 py-6 shadow-sm hover:shadow-md transition"
+            className="block bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition"
         >
-
-            <div className="flex flex-col min-h-[320px]">
+            {/* Header */}
+            <div className="flex justify-between items-start">
                 <div>
                     <h2 className="text-3xl font-bold text-gray-700">
                         {resume.companyName}
                     </h2>
 
-                    <p className="text-gray-500 text-lg mt-2">
+                    <p className="text-gray-500 text-lg mt-1">
                         {resume.jobTitle}
                     </p>
                 </div>
 
-                <div className="flex justify-end mt-auto">
-                    <div className="w-20 h-20 rounded-full border-2 border-purple-500 flex items-center justify-center text-lg font-bold text-gray-700">
-                        {resume.feedback.overallScore}/100
-                    </div>
-            <div className="gradient-border animate-in fade-in duration-1000">
-                <div className="w-full h-full"<
-                    <img
-                        src={imagePath}
-                        alt="resume"
-                        className="w-full h-[350px] max-sm:h-[200px] object-cover object-top"
+                <div className="w-20 h-20 rounded-full border-2 border-purple-500 flex items-center justify-center text-lg font-bold text-gray-700">
+                    {resume.feedback.overallScore}/100
                 </div>
             </div>
-                </div>
+
+            {/* Resume Preview */}
+            <div className="mt-8 overflow-hidden rounded-xl border border-gray-200">
+                <img
+                    src={resume.imagePath}
+                    alt={`${resume.companyName} Resume`}
+                    className="w-full object-cover"
+                />
             </div>
         </Link>
     );
